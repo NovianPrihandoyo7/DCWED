@@ -30,9 +30,10 @@ svg {
   display: block;
 }
 
-/* Membuat kontrol formulir mengikuti font elemen induknya. */
+/* Membuat kontrol formulir (termasuk dropdown select) mengikuti font elemen induknya. */
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -116,11 +117,11 @@ input {
 .brand-mark--light {
   color: #fff;
 }
-/* Menyusun tautan menu berjajar dengan jarak yang menyesuaikan lebar layar. */
+/* Menyusun tautan menu berjajar dengan jarak yang menyesuaikan lebar layar agar muat 7 menu navigasi. */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(24px, 2.7vw, 44px);
+  gap: clamp(16px, 2.1vw, 36px);
 }
 /* Mengatur ukuran, huruf kapital, dan transisi warna setiap tautan navigasi. */
 .nav-links a {
@@ -143,7 +144,7 @@ input {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
-/* Menyiapkan ukuran dan garis ikon SVG jika dipakai di tautan. Panah pada HTML saat ini memakai span, sehingga aturan ini tidak mengenainya. */
+/* Menyiapkan ukuran dan garis ikon SVG jika dipakai di tautan. */
 .nav-book svg,
 .text-link svg {
   width: 16px;
@@ -248,7 +249,7 @@ h2 em {
   line-height: 1.6;
   opacity: 0.88;
 }
-/* Menyusun tombol layanan dan tautan WhatsApp berdampingan di bawah deskripsi. */
+/* Menyusun tombol layanan dan tautan cek jadwal berdampingan di bawah deskripsi. */
 .hero-actions {
   margin-top: 42px;
   display: flex;
@@ -269,7 +270,7 @@ h2 em {
   text-transform: uppercase;
   transition: 0.3s ease;
 }
-/* Menyiapkan ukuran ikon SVG dalam tombol jika digunakan; panah span pada HTML saat ini tidak terpengaruh. */
+/* Menyiapkan ukuran ikon SVG dalam tombol jika digunakan. */
 .button svg {
   width: 18px;
   height: 18px;
@@ -344,7 +345,7 @@ h2 em {
   color: var(--gold);
 }
 
-/* Memberi ruang atas-bawah dan tepi yang konsisten pada bagian About, Services, dan Gallery. */
+/* Memberi ruang atas-bawah dan tepi yang konsisten pada setiap bagian konten. */
 .section {
   padding: 140px clamp(28px, 7.5vw, 115px);
 }
@@ -447,7 +448,7 @@ h2 {
 .services {
   background: var(--beige);
 }
-/* Menyusun judul dan deskripsi layanan berdampingan serta meratakan bagian bawahnya. */
+/* Menyusun judul dan deskripsi bagian berdampingan serta meratakan bagian bawahnya. */
 .section-heading {
   display: flex;
   align-items: flex-end;
@@ -458,7 +459,7 @@ h2 {
 .section-heading h2 {
   margin-bottom: 0;
 }
-/* Membatasi lebar deskripsi layanan dan mengatur keterbacaannya; tanda > hanya memilih anak langsung. */
+/* Membatasi lebar deskripsi bagian dan mengatur keterbacaannya; tanda > hanya memilih anak langsung. */
 .section-heading > p {
   color: #6f655e;
   max-width: 350px;
@@ -538,7 +539,7 @@ h2 {
   place-items: center;
   transition: 0.3s;
 }
-/* Menyiapkan garis ikon SVG bila digunakan; panah kartu saat ini berupa karakter teks. */
+/* Menyiapkan garis ikon SVG bila digunakan. */
 .service-arrow svg {
   width: 14px;
   stroke: white;
@@ -551,11 +552,121 @@ h2 {
   color: var(--espresso);
 }
 
-/* Memberi ruang ekstra di bawah galeri sebelum bagian kontak. */
-.gallery {
-  padding-bottom: 170px;
+/* === PACKAGES === */
+/* Menyusun tiga kartu paket pernikahan dalam tiga kolom dengan lebar sejajar. */
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
+/* Membuat kartu paket bergaya editorial dengan bingkai garis emas tipis dan sudut tegas. */
+.package-card {
+  border: 1px solid rgba(197, 164, 109, 0.45);
+  padding: 44px 36px;
+  background: var(--ivory);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+/* Mengangkat kartu sedikit saat kursor diarahkan untuk memberi kesan interaktif. */
+.package-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(41, 35, 31, 0.06);
+}
+/* Menonjolkan paket unggulan (Royal Payas Agung) dengan latar burgundy khas merek. */
+.package-card--featured {
+  background: var(--burgundy);
+  color: var(--ivory);
+  border-color: var(--gold);
+}
+/* Label kecil di bagian atas setiap kartu paket. */
+.package-tag {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+/* Judul nama paket pernikahan dengan font serif. */
+.package-card h3 {
+  font-size: clamp(24px, 2.2vw, 32px);
+  margin-bottom: 14px;
+}
+/* Deskripsi singkat peruntukan paket pernikahan. */
+.package-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #625a54;
+  margin-bottom: 26px;
+}
+/* Menyesuaikan warna deskripsi agar terbaca lembut di atas latar burgundy paket unggulan. */
+.package-card--featured .package-desc {
+  color: rgba(248, 244, 236, 0.78);
+}
+/* Daftar fasilitas paket tanpa peluru bawaan browser, dipisahkan garis tipis emas. */
+.package-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 34px;
+  border-top: 1px solid rgba(197, 164, 109, 0.28);
+}
+/* Mengatur jarak dan garis pemisah tiap item fasilitas di dalam paket. */
+.package-list li {
+  padding: 13px 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #524a44;
+  border-bottom: 1px solid rgba(197, 164, 109, 0.2);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+/* Menambahkan tanda garis emas kecil di depan setiap fasilitas. */
+.package-list li::before {
+  content: "—";
+  color: var(--gold);
+  flex-shrink: 0;
+}
+/* Menyesuaikan warna tulisan fasilitas pada paket unggulan berlatar gelap. */
+.package-card--featured .package-list li {
+  color: rgba(248, 244, 236, 0.88);
+}
+/* Membuat tombol emas pada paket unggulan memenuhi lebar kartu. */
+.package-card .button {
+  width: 100%;
+}
+
+/* === GALLERY === */
 /* Menyusun judul galeri dan tautan Instagram dalam dua kolom. */
+body {
+  background-color: #fbf6ee; /* Warna latar belakang krem lembut */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.gallery-item {
+  width: 320px;
+  height: 320px;
+  border-radius: 36px; /* Mengatur tingkat kelengkungan sudut */
+  overflow: hidden;    /* Memotong sudut gambar agar mengikuti lengkungan */
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28); /* Bayangan mengikuti border-radius */
+}
+
+.gallery-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .gallery-heading {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -581,6 +692,17 @@ h2 {
   grid-template-rows: 300px 240px 320px;
   gap: 14px;
 }
+
+.gallery-item img {
+  /* Mengatur tingkat kelengkungan sudut foto */
+  border-radius: 16px; 
+  
+  /* Memastikan gambar mengisi ruang dengan rapi tanpa terdistorsi */
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
 /* Membuat wadah foto sebagai acuan posisi caption dan memotong gambar saat zoom. */
 .gallery-item {
   position: relative;
@@ -636,21 +758,71 @@ h2 {
   grid-column: 2;
   grid-row: 2 / 4;
 }
-/* Mengatur posisi foto E. Pada desktop ada aturan selector yang sama di bawah; nilai terakhir mengalahkan nilai sebelumnya. */
-.gallery-item--e {
-  grid-column: 1 / 2;
-  grid-row: 3;
-}
 /* Menggeser titik fokus foto C agar bagian yang ditampilkan lebih sesuai dengan bingkainya. */
 .gallery-item--c img {
   object-position: center 35%;
 }
-/* Mengatur posisi foto E. Pada desktop ada aturan selector yang sama di bawah; nilai terakhir mengalahkan nilai sebelumnya. */
+/* Mengatur posisi foto E di sudut kanan bawah grid galeri. */
 .gallery-item--e {
   grid-column: 3;
   grid-row: 3;
 }
 
+/* === TESTIMONIALS (BARU) === */
+/* Memberi latar beige agar bagian ulasan pengantin selaras secara ritme dengan bagian galeri di atasnya. */
+.testimonials {
+  background: var(--beige);
+}
+/* Menyusun kartu ulasan pengantin dalam dua kolom sejajar. */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+/* Membuat kotak kutipan dengan latar ivory dan aksen garis emas di sisi kiri. */
+.testimonial-card {
+  margin: 0;
+  padding: 44px 40px;
+  background: var(--ivory);
+  border-left: 2px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+/* Mengatur teks kutipan pengantin dengan font serif miring yang elegan. */
+.testimonial-card p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.75;
+  color: var(--espresso);
+}
+/* Menetralkan padding dan background bawaan tag footer agar tidak mengikuti aturan footer utama halaman. */
+.testimonial-card footer {
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+/* Nama pasangan pengantin dengan huruf kapital tegas. */
+.testimonial-card footer strong {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--espresso);
+}
+/* Keterangan jenis acara dan lokasi pernikahan berwarna emas. */
+.testimonial-card footer span {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* === CONTACT & BOOKING FORM === */
 /* Membuat area kontak berwarna burgundy, dengan semua isi tersusun vertikal dan rata tengah. */
 .contact {
   min-height: 650px;
@@ -697,10 +869,72 @@ h2 {
   line-height: 1.7;
   opacity: 0.72;
 }
-/* Memberi jarak atas dan lebar minimum pada tombol WhatsApp. */
-.contact-button {
-  margin-top: 37px;
-  min-width: 230px;
+/* Wadah formulir pengecekan jadwal pernikahan agar terpusat dan rapi. */
+.booking-form {
+  width: 100%;
+  max-width: 680px;
+  margin: 44px auto 12px;
+  text-align: left;
+}
+/* Menyusun dua kolom input bersebelahan di dalam formulir. */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+/* Menyusun label dan kolom isian secara vertikal. */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+/* Mengatur label input dengan huruf kapital kecil berwarna emas terang. */
+.form-group label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e0c495;
+}
+/* Mengatur tampilan kotak input dan dropdown pilihan layanan agar menyatu dengan latar burgundy. */
+.form-group input,
+.form-group select {
+  min-height: 50px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(197, 164, 109, 0.45);
+  color: white;
+  font-size: 13px;
+  outline: none;
+  transition:
+    border-color 0.25s,
+    background 0.25s;
+}
+/* Mengatur warna teks petunjuk (placeholder) di dalam kolom input. */
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+/* Menyorot garis emas saat pengguna mengetik atau memilih kolom isian. */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.1);
+}
+/* Menyesuaikan ikon kalender bawaan browser agar berwarna terang di latar gelap. */
+.form-group input[type="date"] {
+  color-scheme: dark;
+}
+/* Memberi warna latar gelap pada opsi dropdown supaya tulisan tetap terbaca saat dibuka. */
+.form-group select option {
+  background: var(--burgundy);
+  color: white;
+}
+/* Memberi jarak atas dan lebar penuh pada tombol kirim formulir ke WhatsApp. */
+.booking-form .contact-button {
+  width: 100%;
+  margin-top: 12px;
+  border: 0;
 }
 /* Menampilkan nomor telepon di bawah tombol dengan teks kecil dan jarak huruf lebar. */
 .phone {
@@ -710,6 +944,7 @@ h2 {
   opacity: 0.65;
 }
 
+/* === FOOTER === */
 /* Memberi latar ivory dan ruang tepi untuk bagian informasi penutup. */
 footer {
   padding: 85px clamp(28px, 7.5vw, 115px) 32px;
@@ -774,6 +1009,34 @@ footer {
   text-transform: uppercase;
 }
 
+/* === FLOATING WHATSAPP === */
+/* Tombol konsultasi cepat yang tetap menempel di pojok kanan bawah saat halaman digulir. */
+.floating-wa {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 30;
+  background: var(--espresso);
+  color: var(--ivory);
+  border: 1px solid var(--gold);
+  padding: 14px 20px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 28px rgba(24, 18, 14, 0.25);
+  transition:
+    background 0.3s,
+    color 0.3s,
+    transform 0.3s;
+}
+/* Mengubah warna tombol melayang menjadi emas saat disentuh kursor. */
+.floating-wa:hover {
+  background: var(--gold);
+  color: var(--espresso);
+  transform: translateY(-2px);
+}
+
 /* Aturan tablet dan HP: hanya berlaku saat lebar viewport maksimal 900px dan menyesuaikan aturan desktop di atas. */
 @media (max-width: 900px) {
   /* Mengecilkan tinggi navbar menjadi 80px dan memakai dua kolom untuk logo serta pemicu menu. */
@@ -819,7 +1082,7 @@ footer {
     flex-direction: column;
     gap: 25px;
   }
-  /* Menampilkan menu jika class ini ditambahkan; HTML saat ini memakai status checkbox sebagai pemicu. */
+  /* Menampilkan menu jika class ini ditambahkan. */
   .nav-links--open {
     display: flex;
   }
@@ -892,11 +1155,11 @@ footer {
   .about-body {
     margin-left: 0;
   }
-  /* Menumpuk judul dan deskripsi layanan secara vertikal. */
+  /* Menumpuk judul dan deskripsi bagian secara vertikal. */
   .section-heading {
     display: block;
   }
-  /* Menambahkan jarak antara deskripsi layanan dan judul di atasnya. */
+  /* Menambahkan jarak antara deskripsi bagian dan judul di atasnya. */
   .section-heading > p {
     margin-top: 28px;
   }
@@ -907,6 +1170,11 @@ footer {
   /* Menyesuaikan tinggi kartu layanan untuk tampilan tablet. */
   .service-card {
     height: 460px;
+  }
+  /* Menumpuk kartu paket pernikahan dan ulasan pengantin menjadi satu kolom pada tablet dan HP. */
+  .package-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
   }
   /* Mengatur ulang galeri menjadi dua kolom dengan tinggi baris yang sesuai layar kecil. */
   .masonry {
@@ -980,6 +1248,11 @@ footer {
     height: 480px;
     scroll-snap-align: start;
   }
+  /* Menyesuaikan padding kartu paket dan ulasan pada layar HP kecil. */
+  .package-card,
+  .testimonial-card {
+    padding: 32px 24px;
+  }
   /* Menumpuk judul galeri dan tautan Instagram pada HP. */
   .gallery-heading {
     display: block;
@@ -1032,6 +1305,12 @@ footer {
   .contact h2 {
     font-size: 47px;
   }
+  /* Menumpuk kolom formulir menjadi satu kolom pada HP kecil. */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
   /* Mengubah footer menjadi dua kolom pada HP kecil. */
   .footer-main {
     grid-template-columns: 1fr 1fr;
@@ -1049,5 +1328,12 @@ footer {
   .footer-bottom {
     gap: 20px;
     line-height: 1.5;
+  }
+  /* Mengecilkan ukuran dan jarak tombol WhatsApp melayang agar tidak menutupi teks di HP. */
+  .floating-wa {
+    right: 18px;
+    bottom: 18px;
+    padding: 12px 16px;
+    font-size: 8px;
   }
 }
